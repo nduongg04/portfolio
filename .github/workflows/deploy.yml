@@ -1,0 +1,43 @@
+# Name of the workflow
+name: Deploy to GitHub Pages
+
+# Trigger the workflow on push (merge) to main branch
+on:
+  push:
+    branches:
+      - main
+
+# Allow this workflow to write to the gh-pages branch
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ⚙️
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies 📦
+        run: npm ci
+
+      - name: Build project 🔧
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: '/${{ github.event.repository.name }}'
+
+      - name: Add .nojekyll file 📄
+        run: touch ./out/.nojekyll
+
+      - name: Deploy to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: out
+          branch: gh-pages
+          clean: true
