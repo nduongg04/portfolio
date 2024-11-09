@@ -25,7 +25,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies 📦
-        run: npm ci
+        run: npm ci --force
 
       - name: Build project 🔧
         run: npm run build
@@ -39,5 +39,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: out
-          branch: main
+          branch: gh-pages
           clean: true
