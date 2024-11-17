@@ -1,8 +1,6 @@
 services:
   server:
-    # image: public.ecr.aws/y2x6m4d2/project/portfolio:latest
-    build:
-      context: .
+    image: public.ecr.aws/y2x6m4d2/project/portfolio:latest
     environment:
       NODE_ENV: production
     ports:
