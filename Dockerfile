@@ -14,7 +14,7 @@ ENV NODE_ENV=production
 COPY --chown=node:node --from=build /app/.next ./.next
 COPY --chown=node:node --from=build /app/public ./public
 COPY --chown=node:node package*.json ./
-COPY --chown=node:node --from=build /app/next.config.mjs ./next.config.mjs
+COPY --chown=node:node --from=build /app/next.config.ts ./next.config.ts
 
 RUN npm ci --only=production --quiet \
     && npm cache clean --force
