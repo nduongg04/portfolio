@@ -4,16 +4,53 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import emailjs from 'emailjs-com'
+import { toast } from '@/hooks/use-toast'
 
 const Contact = forwardRef<HTMLElement>((props, ref) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+	const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission logic here
-    console.log('Form submitted:', { name, email, message })
+    
+    setLoading(true)
+
+    const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string
+    const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string
+    const userID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID as string
+
+    const templateParams = {
+      name,
+      email,
+      message,
+    }
+
+    await emailjs.send(serviceID, templateID, templateParams, userID)
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text)
+        toast({
+          variant: "success",
+          title: "Email sent successfully",
+          description: "Your message has been sent to the developer.",
+        })
+        setName('')
+        setEmail('')
+        setMessage('')
+      })
+      .catch((error) => {
+        console.error('FAILED...', error)
+        toast({
+					variant: "destructive",
+          title: "Email sending failed",
+          description: "Please try again later.",
+        })
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }
 
   return (
@@ -71,9 +108,10 @@ const Contact = forwardRef<HTMLElement>((props, ref) => {
                 </div>
                 <Button
                   type="submit"
+                  disabled={loading}
                   className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white"
                 >
-                  Send Message
+                  {loading ? 'Sending...' : 'Send Message'}
                 </Button>
               </form>
             </CardContent>

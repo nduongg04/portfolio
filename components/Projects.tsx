@@ -35,49 +35,73 @@ interface Project {
 const projects: Project[] = [
 	{
 		id: 1,
-		title: "Personal Blog",
+		title: "Live Docs",
 		description:
-			"A blog built with Next.js and MDX for sharing my learning journey.",
+			"A collaborative document editor built with Next.js and Tailwind CSS.",
 		longDescription:
-			"This personal blog showcases my journey as a developer, featuring articles on web development, coding tips, and my experiences with various technologies. Built with Next.js for optimal performance and MDX for flexible content creation, it demonstrates my ability to create a full-featured, responsive web application.",
-		image: "/placeholder.svg?height=300&width=400",
-		github: "https://github.com/yourusername/personal-blog",
-		live: "https://your-blog-url.com",
-		tags: ["Next.js", "MDX", "React"],
+			"This collaborative document editor showcases my ability to create a full-featured, responsive web application. Built with Next.js for optimal performance and Tailwind CSS for a modern, clean design, it demonstrates my ability to create a full-featured, responsive web application.",
+		image: "/assets/images/live-docs.gif",
+		github: "https://github.com/nduongg04/live-docs-fe",
+		live: "https://live-docs.duong.website",
+		tags: [
+			"Next.js",
+			"Tailwind CSS",
+			"React",
+			"MongoDB",
+			"Github Actions",
+			"Docker",
+			"AWS ECR",
+			"AWS EC2",
+		],
 	},
 	{
 		id: 2,
-		title: "Weather App",
-		description: "A weather application using React and a weather API.",
+		title: "Blog GraphQL API",
+		description:
+			"A blog built with NestJS and GraphQL for sharing my learning journey.",
 		longDescription:
-			"This weather application provides real-time weather information for locations worldwide. Built with React and integrated with a robust weather API, it showcases my skills in working with external APIs, state management, and creating intuitive user interfaces.",
-		image: "/placeholder.svg?height=200&width=300",
-		github: "https://github.com/yourusername/weather-app",
-		live: "https://your-weather-app-url.com",
-		tags: ["React", "API", "CSS"],
+			"This blog highlights my skills in developing a GraphQL API. Utilizing NestJS for high performance and GraphQL for a sleek, contemporary design, it exemplifies my capability to build a comprehensive API.",
+		image: "/assets/images/nestjs-graphql-blog.png",
+		github: "https://github.com/nduongg04/nestjs-graphql-blog",
+		live: "https://nestjs-graphql-blog.duong.website",
+		tags: [
+			"NestJS",
+			"GraphQL",
+			"PostgreSQL",
+			"Docker",
+			"AWS ECR",
+			"AWS EC2",
+			"Github Actions",
+		],
 	},
 	{
 		id: 3,
-		title: "Task Manager",
-		description: "A task management app built with React and Node.js.",
+		title: "E-commerce API",
+		description: "An e-commerce API built with NestJS and MongoDB.",
 		longDescription:
-			"This full-stack task management application allows users to create, organize, and track their tasks efficiently. Built with React for the frontend and Node.js for the backend, it demonstrates my ability to create full-stack applications with user authentication, database integration, and real-time updates.",
-		image: "/placeholder.svg?height=250&width=350",
-		github: "https://github.com/yourusername/task-manager",
-		live: "https://your-task-manager-url.com",
-		tags: ["React", "Node.js", "MongoDB"],
+			"This e-commerce API highlights my skills in developing a robust, scalable API. Utilizing NestJS for high performance and MongoDB for a flexible, modern design, it exemplifies my capability to build a comprehensive API.",
+		image: "/assets/images/nestjs-e-commerce.png",
+		github: "https://github.com/nduongg04/nestjs-ecommerce-api",
+		live: "https://nestjs-ecommerce-api.duong.website",
+		tags: [
+			"NestJS",
+			"PostgreSQL",
+			"Docker",
+			"AWS ECR",
+			"AWS EC2",
+			"Github Actions",
+		],
 	},
 	{
 		id: 4,
-		title: "E-commerce Platform",
-		description:
-			"A full-stack e-commerce solution with user authentication and payment integration.",
+		title: "Portfolio",
+		description: "A portfolio website built with Next.js and Tailwind CSS.",
 		longDescription:
-			"This comprehensive e-commerce platform provides a seamless shopping experience for users. Built with Next.js for the frontend and Node.js for the backend, it features user authentication, product management, shopping cart functionality, and secure payment integration with Stripe. This project showcases my ability to create complex, scalable web applications.",
-		image: "/placeholder.svg?height=280&width=420",
-		github: "https://github.com/yourusername/ecommerce-platform",
-		live: "https://your-ecommerce-url.com",
-		tags: ["Next.js", "Node.js", "Stripe"],
+			"This portfolio website highlights my skills in creating a responsive, modern web application. Built with Next.js for optimal performance and Tailwind CSS for a sleek, contemporary design, it exemplifies my capability to create a responsive web application.",
+		image: "/assets/images/portfolio.png",
+		github: "https://github.com/nduongg04/portfolio",
+		live: "https://duong.website",
+		tags: ["Next.js", "Tailwind CSS", "React"],
 	},
 ];
 
@@ -107,7 +131,7 @@ const Projects = forwardRef<HTMLDivElement>((props, ref) => {
 		<section
 			id="projects"
 			ref={ref}
-			className="py-20 bg-gray-800 relative bg-transparent"
+			className="py-20 relative bg-none backdrop-blur-none bg-transparent"
 		>
 			<div className="container mx-auto px-4">
 				<motion.h2
@@ -120,10 +144,12 @@ const Projects = forwardRef<HTMLDivElement>((props, ref) => {
 				</motion.h2>
 				<div className="mb-8 flex flex-wrap justify-center gap-2">
 					<Button
-						variant={filter === null ? "default" : "outline"}
+						variant="default"
 						onClick={() => filterProjects(null)}
-						className={`mb-2 ${
-							filter === null ? "" : "text-gray-700"
+						className={`mb-2 bg-white hover:bg-white hover:scale-110 transition-all duration-300 ${
+							filter === null
+								? "bg-gradient-to-r focus:bg-white hover:bg-white from-purple-400 to-blue-400"
+								: "text-gray-700"
 						}`}
 					>
 						All
@@ -131,10 +157,12 @@ const Projects = forwardRef<HTMLDivElement>((props, ref) => {
 					{allTags.map((tag) => (
 						<Button
 							key={tag}
-							variant={filter === tag ? "default" : "outline"}
+							variant="default"
 							onClick={() => filterProjects(tag)}
-							className={`mb-2 ${
-								filter === tag ? "" : "text-gray-700"
+							className={`bg-white hover:bg-gray-300 hover:scale-110 transition-all duration-300 mb-2 ${
+								filter === tag
+									? "bg-gradient-to-r from-purple-400 to-blue-400"
+									: "text-gray-700"
 							}`}
 						>
 							{tag}
@@ -143,7 +171,7 @@ const Projects = forwardRef<HTMLDivElement>((props, ref) => {
 				</div>
 				<AnimatePresence>
 					<motion.div
-						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
 						layout
 					>
 						{visibleProjects.map((project) => (
@@ -193,7 +221,7 @@ function ProjectCard({
 	}, []);
 
 	return (
-		<Card className="h-full bg-gray-700 border-gray-600 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+		<Card className="h-full bg-gray-700 border-gray-600 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
 			<CardHeader className="p-0 aspect-video relative overflow-hidden">
 				{!isLoaded && (
 					<div className="absolute inset-0 bg-gray-600 animate-pulse" />
@@ -210,7 +238,7 @@ function ProjectCard({
 					height={300}
 				/>
 			</CardHeader>
-			<CardContent className="p-6">
+			<CardContent className="p-6 flex-1 flex flex-col">
 				<CardTitle className="text-xl font-semibold mb-2 text-gray-100">
 					{project.title}
 				</CardTitle>
@@ -224,7 +252,7 @@ function ProjectCard({
 						</Badge>
 					))}
 				</div>
-				<div className="flex justify-between items-center">
+				<div className="flex-1 flex justify-between items-end">
 					<Button variant="outline" size="sm" asChild>
 						<a
 							href={project.github}
@@ -260,7 +288,6 @@ function ProjectModal({
 					<DialogTitle className="text-2xl font-bold">
 						{project.title}
 					</DialogTitle>
-					
 				</DialogHeader>
 				<Image
 					src={project.image}

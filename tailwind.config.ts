@@ -25,17 +25,18 @@ const config: Config = {
 					"100%": { opacity: "0" },
 				},
 				scroll: {
-					"0%": {
-						transform: "translateX(0)",
-					},
-					"100%": {
-						transform: "translateX(-50%)",
-					},
+					"0%": { transform: "translateX(0)" },
+					"100%": { transform: "translateX(-66.666666%)" },
+				},
+				"infinite-scroll": {
+					from: { transform: "translateX(0)" },
+					to: { transform: "translateX(-50%)" },
 				},
 			},
 			animation: {
 				blink: "blink 1s infinite",
-				scroll: "scroll 30s linear infinite",
+				scroll: "scroll 40s linear infinite",
+				"infinite-scroll": "infinite-scroll 25s linear infinite",
 			},
 		},
 	},

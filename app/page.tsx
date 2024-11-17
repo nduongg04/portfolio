@@ -50,6 +50,10 @@ export default function App() {
 		sectionRefs.current[section]?.scrollIntoView({ behavior: "smooth" });
 	};
 
+	useEffect(() => {
+		console.log(activeSection);
+	}, [activeSection]);
+
 	return (
 		<div className="min-h-screen bg-gray-900 text-white ">
 			<Header
@@ -79,7 +83,6 @@ export default function App() {
 					ref={(el) => {
 						if (el) sectionRefs.current.techstack = el;
 					}}
-					className=""
 				>
 					<TechStack />
 				</section>
@@ -88,6 +91,7 @@ export default function App() {
 					ref={(el) => {
 						if (el) sectionRefs.current.projects = el;
 					}}
+					className=" backdrop-blur-none bg-transparent	"
 				>
 					<Projects />
 				</section>

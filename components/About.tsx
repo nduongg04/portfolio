@@ -12,7 +12,6 @@ const About = forwardRef<HTMLElement>((props, ref) => {
 
   return (
     <section id="about" ref={ref} className="py-20">
-      <div className="bg-gray-800 z-1"></div>
       <div className="container mx-auto px-4 relative z-20">
         <motion.h2
           className="text-4xl font-bold mb-12 text-center text-gray-100"
