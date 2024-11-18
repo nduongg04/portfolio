@@ -30,7 +30,7 @@ const About = forwardRef<HTMLElement>((props, ref) => {
             <Card className="bg-gray-700 border-gray-600 shadow-lg">
               <CardContent className="p-6">
                 <p className="text-gray-300 mb-4">
-                  As an aspiring full-stack developer, I'm passionate about creating efficient, user-friendly web applications. Although I'm at the beginning of my journey, I'm dedicated to continuous learning and improving my skills in Node.js, Next.js, NestJS, React, TypeScript, HTML, CSS, and Tailwind CSS.
+								As an aspiring full-stack developer, I'm passionate about creating efficient, user-friendly web applications. Although I'm at the beginning of my journey, I'm dedicated to continuous learning and improving my skills in Node.js, Next.js, NestJS, React, TypeScript, HTML, CSS, Tailwind CSS, GitHub Actions, and AWS.
                 </p>
                 <p className="text-gray-300">
                   I'm excited to take on new challenges and contribute to innovative projects. My goal is to build scalable, performant web applications that provide great user experiences.
